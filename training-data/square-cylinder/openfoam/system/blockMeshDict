@@ -1,0 +1,200 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  plus                                  |
+|   \\  /    A nd           | Web:      www.OpenFOAM.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.1;
+
+d 1;
+
+xn1  #calc "std::floor($d*4.5)";
+xn2  #calc "std::floor($d*5.5)";
+xn3  #calc "std::floor($d*20)";
+
+#calc "Info<< $xn1 << endl";
+
+yn1  #calc "std::floor($d*7)";
+yn2  #calc "std::floor($d*8)";
+yn3  #calc "std::floor($d*15)";
+
+zn  #calc "std::floor($d*4)";
+
+//Cell expansion ratios
+xe_front 0.08428845675;
+ye_bottom 0.04583554871;
+ye_top 21.81870025;
+xe_back 13.45427455; 
+
+vertices
+(
+    //Foward vertices (0-7)
+    (0 0 0)
+    ($xn1 0 0)
+    (0 $yn1 0)
+    ($xn1 $yn1 0)
+    (0 $yn2 0)
+    ($xn1 $yn2 0)
+    (0 $yn3 0)
+    ($xn1 $yn3 0)
+
+    //Rear vertices (8-15)
+    ($xn2 0 0)
+    ($xn3 0 0)
+    ($xn2 $yn1 0)
+    ($xn3 $yn1 0)
+    ($xn2 $yn2 0)
+    ($xn3 $yn2 0)
+    ($xn2 $yn3 0)
+    ($xn3 $yn3 0)
+
+    //Z+ Foward vertices (16-23)
+    (0 0 $zn)
+    ($xn1 0 $zn)
+    (0 $yn1 $zn)
+    ($xn1 $yn1 $zn)
+    (0 $yn2 $zn)
+    ($xn1 $yn2 $zn)
+    (0 $yn3 $zn)
+    ($xn1 $yn3 $zn)
+
+    //Z+ Rear vertices (24-31)
+    ($xn2 0 $zn)
+    ($xn3 0 $zn)
+    ($xn2 $yn1 $zn)
+    ($xn3 $yn1 $zn)
+    ($xn2 $yn2 $zn)
+    ($xn3 $yn2 $zn)
+    ($xn2 $yn3 $zn)
+    ($xn3 $yn3 $zn)
+);
+
+blocks
+(
+    //Forward blocks
+    hex (0 1 3 2 16 17 19 18) (20 20 20) simpleGrading ($xe_front $ye_bottom 1)
+    hex (2 3 5 4 18 19 21 20) (20 20 20) simpleGrading ($xe_front 1 1)
+    hex (4 5 7 6 20 21 23 22) (20 20 20) simpleGrading ($xe_front $ye_top 1)
+    //Middle block
+    hex (1 8 10 3 17 24 26 19) (20 20 20) simpleGrading (1 $ye_bottom 1)
+    hex (5 12 14 7 21 28 30 23) (20 20 20) simpleGrading (1 $ye_top 1)
+    //Rear blocks
+    hex (8 9 11 10 24 25 27 26) (60 20 20) simpleGrading ($xe_back $ye_bottom 1)
+    hex (10 11 13 12 26 27 29 28) (60 20 20) simpleGrading ($xe_back 1 1)
+    hex (12 13 15 14 28 29 31 30) (60 20 20) simpleGrading ($xe_back $ye_top 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    fixedWalls
+    {
+        type wall;
+        faces
+        (
+            //Channel walls
+            (0 1 17 16)
+            (6 7 23 22)
+            (1 8 24 17)
+            (7 14 30 23)
+            (8 9 25 24)
+            (14 15 31 30)            
+        );
+    }
+    blockFaces
+    {
+        type wall;
+        faces
+        (
+            (3 5 21 19)
+            (5 12 28 21)
+            (10 12 28 26)
+            (3 10 26 19)
+        );
+    }
+    
+    inlet
+    {
+        type patch;
+        faces
+        (
+		(0 2 18 16)
+		(2 4 20 18)
+		(4 6 22 20)
+        );
+    }
+    outlet
+    {
+	
+        type patch;
+        faces
+        (
+		(9 11 27 25)
+		(11 13 29 27)
+		(13 15 31 29)
+        );
+	
+    }
+    sidewall_1
+    {
+	
+        type cyclic;
+	neighbourPatch sidewall_2;
+        faces
+        (
+    		//Forward blocks
+    		(0 1 3 2) 
+    		(2 3 5 4) 
+    		(4 5 7 6) 
+    		//Middle block
+    		(1 8 10 3) 
+    		(5 12 14 7) 
+    		//Rear blocks
+    		(8 9 11 10) 
+   		(10 11 13 12) 
+    		(12 13 15 14) 
+        );
+	
+    }
+
+    sidewall_2
+    {
+	
+        type cyclic;
+	neighbourPatch sidewall_1;
+        faces
+        (
+    		//Forward blocks
+    		(16 17 19 18) 
+    		(18 19 21 20) 
+    		(20 21 23 22) 
+    		//Middle block
+    		(17 24 26 19) 
+    		(21 28 30 23) 
+    		//Rear blocks
+    		(24 25 27 26) 
+   		(26 27 29 28) 
+    		(28 29 31 30) 
+        );
+	
+    }
+);
+
+mergePatchPairs
+(
+);
+
+// ************************************************************************* //

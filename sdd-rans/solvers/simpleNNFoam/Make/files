@@ -1,0 +1,3 @@
+simpleNNFoam.C
+
+EXE = $(FOAM_APPBIN)/simpleNNFoam

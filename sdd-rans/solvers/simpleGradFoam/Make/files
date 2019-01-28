@@ -1,0 +1,3 @@
+simpleGradFoam.C
+
+EXE = $(FOAM_APPBIN)/simpleGradFoam

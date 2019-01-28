@@ -1,0 +1,4 @@
+/* Library dependencies */
+reynoldsNet.C
+
+LIB = $(FOAM_LIBBIN)/libreynoldsnet
