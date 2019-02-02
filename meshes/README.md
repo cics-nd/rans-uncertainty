@@ -1,6 +1,6 @@
 # Meshes for the Masses
 
-[Quantifying model form uncertainty in Reynolds-averaged turbulence models with Bayesian deep neural networks](https://arxiv.org/pdf/1807.02901.pdf)
+[Quantifying model form uncertainty in Reynolds-averaged turbulence models with Bayesian deep neural networks](https://www.sciencedirect.com/science/article/pii/S0021999119300464)
 
 [Nicholas Geneva](http://nicholasgeneva.com/), [Nicholas Zabaras](https://www.zabaras.com)
 
@@ -41,10 +41,13 @@ Square Duct | Street Canyon | Tandem Cylinders | Wall Mounted Cube |
 ## Citation
 Find this useful? Cite us with:
 ```latex
-@article{geneva2018quantifying,
-  title={Quantifying model form uncertainty in Reynolds-averaged turbulence models with Bayesian deep neural networks},
-  author={Geneva, Nicholas and Zabaras, Nicholas},
-  journal={arXiv preprint arXiv:1807.02901},
-  year={2018}
+@article{geneva2019quantifying,
+  title = {Quantifying model form uncertainty in {Reynolds-averaged} turbulence models with {Bayesian} deep neural networks},
+  author = {Nicholas Geneva and Nicholas Zabaras},
+  journal = {Journal of Computational Physics},
+  year = {2019},
+  issn = {0021-9991},
+  doi = "https://doi.org/10.1016/j.jcp.2019.01.021",
+  url = "http://www.sciencedirect.com/science/article/pii/S0021999119300464"
 }
 ```

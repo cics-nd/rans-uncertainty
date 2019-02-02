@@ -2,7 +2,7 @@
 // Created using Gmsh (http://gmsh.info/)
 // Mesh Distributed by: Notre Dame CICS (MIT Liscense)
 // - Associated publication:
-// doi: 
+// doi: https://doi.org/10.1016/j.jcp.2019.01.021
 // github: https://github.com/cics-nd/rans-uncertainty
 
 // Input Variables

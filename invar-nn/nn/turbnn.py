@@ -4,8 +4,8 @@ architecture used change this file!
 ===
 Distributed by: Notre Dame CICS (MIT Liscense)
 - Associated publication:
-url: 
-doi: 
+url: https://www.sciencedirect.com/science/article/pii/S0021999119300464
+doi: https://doi.org/10.1016/j.jcp.2019.01.021
 github: https://github.com/cics-nd/rans-uncertainty
 ===
 '''

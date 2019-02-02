@@ -2,8 +2,8 @@
 // Converter Script [Mesh Points from Langley Research Center -> GMSH Format]
 // Distributed by: Notre Dame CICS (MIT Liscense)
 // - Associated publication:
-// doi: 
-// github: 
+// doi: https://doi.org/10.1016/j.jcp.2019.01.021
+// github: https://github.com/cics-nd/rans-uncertainty
 // - Original Flow Reference:
 // doi: http://www.doi.org/10.1016/j.ijheatfluidflow.2015.07.006
 // url: https://turbmodels.larc.nasa.gov/Other_LES_Data/conv-div-channel20580les.html
