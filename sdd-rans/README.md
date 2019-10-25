@@ -32,14 +32,14 @@ Stochastic Data-Driven RANS Framework |
 Find this useful? Cite us with:
 ```latex
 @article{geneva2019quantifying,
-  title = "Quantifying model form uncertainty in Reynolds-averaged turbulence models with Bayesian deep neural networks",
-  journal = "Journal of Computational Physics",
-  volume = "383",
-  pages = "125 - 147",
-  year = "2019",
-  issn = "0021-9991",
-  doi = "https://doi.org/10.1016/j.jcp.2019.01.021",
-  url = "http://www.sciencedirect.com/science/article/pii/S0021999119300464",
-  author = "Nicholas Geneva and Nicholas Zabaras"
+  title = {Quantifying model form uncertainty in {Reynolds-averaged} turbulence models with {Bayesian} deep neural networks},
+  journal = {Journal of Computational Physics},
+  volume = {383},
+  pages = {125 - 147},
+  year = {2019},
+  issn = {0021-9991},
+  doi = {10.1016/j.jcp.2019.01.021},
+  url = {http://www.sciencedirect.com/science/article/pii/S0021999119300464},
+  author = {Nicholas Geneva and Nicholas Zabaras}
 }
 ```
