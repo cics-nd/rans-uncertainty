@@ -152,7 +152,7 @@ class FoamSVGD():
 
             # Log Gamma Output-wise noise prior
             # See Eq. 20 in paper
-            prior_log_beta = (self.prior_beta_shape * self.models[index].log_beta \
+            prior_log_beta = ((self.prior_beta_shape-1.0) * self.models[index].log_beta \
                         - self.models[index].log_beta.exp() * self.prior_beta_rate).sum()
 
             return log_likelihood + prior_ws + prior_log_beta, \
