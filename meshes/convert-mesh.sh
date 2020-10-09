@@ -10,7 +10,9 @@ export FOAM_CASE="../LES-OpenFoam" # Directory of OpenFoam case
 # Requires the GMSH executable to be in the same directory!
 # For getting GMSH see (http://gmsh.info/)
 # May have to "chmod +x gmsh" to run it through bash
-./gmsh ${MESH_NAME}.geo -3 -o ${MESH_NAME}.msh -algo frontal -algo front3d
+# Mesh files need to be in GMSH ascii format 2 for gmshToFoam
+# https://www.cfd-online.com/Forums/openfoam-meshing/211504-new-version-gmshtofoam.html
+./gmsh ${MESH_NAME}.geo -3 -o ${MESH_NAME}.msh -algo frontal -algo front3d -format msh2
 # gmshToFoam is a utility that is a part of OpenFOAM
 gmshToFoam ${MESH_NAME}.msh -case ${FOAM_CASE}
 
