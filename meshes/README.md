@@ -26,7 +26,7 @@ Square Duct | Street Canyon | Tandem Cylinders | Wall Mounted Cube |
 4. To see changes you've made to the script simply reload the mesh in the GMSH editor.
 ### Converting GMSH to OpenFOAM
 1. To convert the GMSH .geo files to the OpenFOAM format we have included a small bash script.
-2. In a directory place your .geo file, convert-mesh.sh and the GMSH executable. Ensure that OpenFOAM is installed on the respective system and the GMSH executable has the proper permissions to be run by bash (e.g. `chmod +x gmsh`).
+2. In a directory place your .geo file, convert-mesh.sh and the GMSH executable. Ensure that OpenFOAM is installed on the respective system and the GMSH executable has the proper permissions to be run by bash (e.g. `chmod +x gmsh`). Note: Mesh files need to be in GMSH ascii format 2 for used version of [gmshToFoam](https://www.cfd-online.com/Forums/openfoam-meshing/211504-new-version-gmshtofoam.html).
 3. Edit the bash file such that the mesh name and OpenFOAM directory are correct. Note: the OpenFOAM directory must contain the */system/* and */constant/* directories with the appropriate OpenFOAM files.
 4. Run `bash convert-mesh.sh`.
 5. You will then need to edit both your initial field boundary conditions so the patch names match the ones provided by the mesh. Physical names for each patch can be found at the bottom of every .geo file. Additional modification to *constant/polyMesh/boundary* may be required (e.g. enforcing [cyclic boundary condtions](https://www.openfoam.com/documentation/cpp-guide/html/guide-bcs-coupled-cyclic.html), see OpenFOAM documentation for more details). 
