@@ -4,14 +4,16 @@
 
 [Nicholas Geneva](http://nicholasgeneva.com/), [Nicholas Zabaras](https://www.zabaras.com)
 
-This repository contains programs related to the implementation of Stochastic Data-Diven RANS (SDD-RANS). Due to the constant changes with needed libraries, the following does not aim to be a functioning package but rather a reference for others to understand our approach for incoorporating deep learning into OpenFOAM. In this application we use Caffe2's C++ backend to directly integrate deep neural networks into OpenFOAM. This requires the user to have sufficient knowledge on linking C++ compiler libraries, wmake and OpenFOAM's general structure.
+This repository contains programs related to the implementation of Stochastic Data-Diven RANS (SDD-RANS). Due to the constant changes with needed libraries, the following does not aim to be a functioning package but rather a reference for others to understand our approach for incorporating deep learning into OpenFOAM. In this application we use Caffe2's C++ backend to directly integrate deep neural networks into OpenFOAM. This requires the user to have sufficient knowledge on linking C++ compiler libraries, wmake and OpenFOAM's general structure.
+
+**Note**: Due to Caffe 2 updates (now being obsolete completely), compiling the Reynolds Net library may be difficult. Please see some of the closed issues for some additional information regarding [compatibility updates](https://github.com/cics-nd/rans-uncertainty/issues/11), [potential dependencies](https://github.com/cics-nd/rans-uncertainty/issues/10) and [compiling order](https://github.com/cics-nd/rans-uncertainty/issues/12). But such updates will never be official supported.
 
 ## Contents
 * `solvers/simpleGradFoam` - A slightly modified version of the incompressible solver simpleFoam used for obtaining the baseline RANS data. This solver additionally outputs the scaled rate-of-strain and symmetric tensors needed for the neural network as well as a few additional flow features.
 * `pytorchToCaffe2.py` -  A script for converting PyTorch neural networks into Caffe2's protobuf format to be read in C++.
 * `TurbulenceModels/turbulenceModels/ReynoldsNet` - An OpenFOAM library used for loading and executing neural networks using Caffe2's mysterious C++ API. This approach avoids explicitly programming neural network architectures in C++, allowing for rapid testing and modification of neural networks used.
 * `TurbulenceModels/incompressible` - The ReynoldsNet library is then called by a modified incompressible turbulence model library with an additional *divDevRhoReff(U, S, R)* function that does the data-driven prediction. This function can be found in linearViscousStress class.
-* `solvers/simpleNNFoam` -  A slightly modified version of the incompressible solver simpleFoam used to solve the constrained R-S RANS equations yeilding flow field predictions. Note that this solver is ran after an initial baseline simulation using *simpleGradFoam* for a particular test flow since converged RANS flow features are needed for model predictions.
+* `solvers/simpleNNFoam` -  A slightly modified version of the incompressible solver simpleFoam used to solve the constrained R-S RANS equations yielding flow field predictions. Note that this solver is ran after an initial baseline simulation using *simpleGradFoam* for a particular test flow since converged RANS flow features are needed for model predictions.
 
 Stochastic Data-Driven RANS Framework |
 | ------------- |
